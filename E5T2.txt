@@ -1,0 +1,75 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+
+CFRipper: Library and CLI tool for analysing CloudFormation templates and check them for security compliance.
+
+### Example vulnerability
+
+S3BucketPolicyWildcardActionRule: This is a rule that looks for S3 bucket policies that allow potentially harmful actions to be performed on S3 buckets.
+
+##Scan AMI’s or containers for OS vulnerabilities:
+
+Appropriate Tools:
+
+OpenSCAP: Security Content Automation Protoco (SCAP) enables automated vulnerability management, measurement, and policy compliance evaluation using a specific set of standards. OpenSCAP is an example of SCAP implementation. OpenSCAP provides a set of tools for scanning and compliance management, including oscap-docker, which can scan a container image.
+
+### Example vulnerability:
+
+oscap-docker lets you scan an image for xccdf (Extensible Configuration Checklist Description Format) compliance using the following command:
+
+oscap-docker image <image-name> xccdf eval --report results.html --profile standard <path to xccdf definition file>
+
+For example, to scan a CentOS image:
+
+oscap-docker image centos xccdf eval --report results.html --profile standard /usr/share/xml/scap/ssg/content/ssg-centos7-xccdf.xml
+
+The resulting output will look like this:
+
+1. Title   Disable At Service (atd)
+2. Rule    service_atd_disabled
+3. Result  pass
+4.
+5. Title   Disable Network Router Discovery Daemon (rdisc)
+6. Rule    service_rdisc_disabled
+7. Result  fail
+8.
+9. Title   Disable Odd Job Daemon (oddjobd)
+10. Rule    service_oddjobd_disabled
+11. Result  pass
+12.
+13. Title   Disable Apache Qpid (qpidd)
+14. Rule    service_qpidd_disabled
+15. Result  pass
+16.
+17. Title   Disable Automatic Bug Reporting Tool (abrtd)
+18. Rule    service_abrtd_disabled
+19. Result  pass
+20.
+21. Title   Disable ntpdate Service (ntpdate)
+22. Rule    service_ntpdate_disabled
+23. Result  notapplicable
+24.
+25. Title   Verify and Correct File Permissions with RPM
+26. Rule    rpm_verify_permissions
+27. Result  fail
+28.
+29. Title   Verify File Hashes with RPM
+30. Rule    rpm_verify_hashes
+31. Result  pass
+32.
+33. Title   Ensure Software Patches Installed
+34. Rule    security_patches_up_to_date
+35. Result  notchecked
+
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+
+AWS Config: AWS Config is a service that enables you to assess, audit, and evaluate the configurations of your AWS resources. Config continuously monitors and records your AWS resource configurations and allows you to automate the evaluation of recorded configurations against desired configurations.
+
+### Example vulnerability:
+
+- s3-bucket-server-side-encryption-enabled - Checks that your Amazon S3 bucket either has S3 default encryption enabled or that the S3 bucket policy explicitly denies put-object requests without server side encryption.
+
+
+
