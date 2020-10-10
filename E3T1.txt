@@ -1,0 +1,14 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+
+I ran the date hydra -l ubuntu -P rockyou.txt ssh://<YourApplicationServerDnsNameHere> command to start a brute force attack against the application server. The brute force attack was succesful and I let it run for more than 3 hrs and checked the Guard Duty next day . I was unable to find any findings in GuarDuty regarding this attack. The only finding Guard Duty seems to care about is one: Policy:IAMUser/RootCredentialUsage. I used https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_settingup.html to enable GuardDuty. Made sure that EC2 and GuardDuty are in the same region.But it didnot work. Hence I took help of a mentor and reviewed all the steps, but still I was unable to find GuardDuty findings. I am also uploading the Brute Attack and GuardDuty findings page for your reference along with the Mentor suggestions page. 
+
+GuardDuty should have 2 findings :
+- That one of my instances was being used to perform an SSH brute force attack
+- That one of my instances was being attacked by an SSH brute force attack
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+
+Amazon GuardDuty is a continuous security monitoring service which collects, analyses and processes date from Data sources like VPC Flow Logs, AWS CloudTrail management event logs, Cloudtrail S3 data event logs, and DNS logs.
+The details for this attack could be found in the VPC flow logs that are being written to S3.
+The logs will show a large amount of requests being sent from the one instance to a specific IP indicating that the instance is being used for an SSH brute force attack.
+The logs will also show a large amount of requests sent to the other instance from a specific IP indicating that the instance is being used for an SSH brute force attack.
