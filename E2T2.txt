@@ -1,0 +1,33 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+## Amazon Inspector - Findings 
+### Rules Package: Security Best Practices-1.0 
+
+Finding: Web Service EC2 Instance is configured to allow users to log in with root credentials over SSH, without having to use a command authenticated by a public key. This increases the likelihood of a successful brute-force attack.
+
+Description: This rule helps determine whether the SSH daemon is configured to permit logging in to your EC2 instance as root.
+
+Remediation: To disable SSH root account logins
+
+### Rules package: Network Reachability-1.1 
+
+Finding: On Web Service EC2 Instance, process 'systemd-netwo' is listening on UDP port 68 which is associated with 'DHCP' and is reachable from the internet
+Recommendation: You can edit the Security Group to remove access from the internet on port 68
+
+Finding: On Web Service EC2 Instance, process 'sshd' is listening on TCP port 22 which is associated with 'SSH' and is reachable from the internet
+Recommendation: You can edit the Security Group to remove access from the internet on port 22
+
+
+### Security Hub
+### Rules Package: Security Best Practices-1.0
+
+Finding :CIS.1.13 Ensure no root account access key exists.
+ 
+Recommendation: The root account is the most privileged user in an AWS account. MFA adds an extra layer of protection on top of a user name and password. With MFA enabled, when a user signs in to an AWS website, they will be prompted for their user name and password as well as for an authentication code from their AWS MFA device.
+
+
+Finding :CIS.2.1 Ensure CloudTrail is enabled in all regions.
+
+Recommendation: AWS CloudTrail is a web service that records AWS API calls for your account and delivers log files to you. The recorded information includes the identity of the API caller, the time of the API call, the source IP address of the API caller, the request parameters, and the response elements returned by the AWS service.
