@@ -15,3 +15,4 @@ In this project, I have:
 - E3T1.txt: Text file listing GuardDuty findings that were detected related to the brute force attack ande explaination about how GuardDuty detected the attack.
 - E4T1.txt: Text file listing 2-3 changes that can be made to environment to prevent an ssh brute force attack from the internet and also 2-3 points about how to secure     the sensitive data in S3.
 - screenshots: This folder contains all the screenshots captured during this project.
+- Brute Force attack Screen shot Showing attack and Mentor Response screen shot.
