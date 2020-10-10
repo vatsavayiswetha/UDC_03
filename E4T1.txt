@@ -1,0 +1,19 @@
+# Identify 2-3 changes that can be made to our environment to prevent an ssh brute force attack from the internet.
+
+-Disable SSH password login on the application server instance.
+
+-Restrict the IPs that are allowed to communicate to application server by providing CIDR block or exact IP address.
+
+-Update the security group which is assigned to the web application instance. Allow connections to port 5000 from the public subnet where the application load balancer resides.
+
+
+# Neither instance should have had access to the secret recipes bucket, in the even that instance API credentials were compromised how could we have prevented access to sensitive data.
+
+
+- Instance Role policy should be defined using least privileged access, that the specific bucket(Free Recipe)should only be accessible from the application server instead of all S3 buckets
+
+- Update the c3-app-InstanceRole IAM role policy to only allow read opeations to the S3 public recipe buckets (resource).
+
+
+- Enable default server side encryption in the S3 bucket.
+
